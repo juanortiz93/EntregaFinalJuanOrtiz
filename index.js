@@ -48,8 +48,12 @@ function aplicarCupon(){// funcion para aplicar el descuento de acuerdo al cupon
             CalcularDescuentoCupon(5,"DESCUENTO5");
             alert("Gracias, vuelva pronto");
         }
+        else{
+            console.warn("Codigo de descuento invalido");
+            calcularValorDescuento();
+        }
     }
-    else  {
+    else  {2
         calcularValorDescuento();
         alert("Gracias, vuelva pronto");
 
@@ -60,46 +64,48 @@ function aplicarCupon(){// funcion para aplicar el descuento de acuerdo al cupon
 /*Menu principal que contiene los productos disponibles para ser seleccionados y va llamando en cada opción las distintas funciones
 para seleccionar el medio de pago aplicar el descuento y aplicar el cupon de descuento y mostrar el checkout al usuario
 */
-let opcion = prompt("Bienvenido, por favor eliga uno de nuestros productos\n 1. TV Sony 46 pulgadas\n 2. Celular Samsung S24\n 3. Computador Acer 15 pulgadas\n 4. Audifonos Bose\n 5. Salir\n Ingrese la opción que desea: ");
-switch(parseInt(opcion)){
-    case 1:
-        producto="TV Sony 46 pulgadas";
-        valor= 3500000;
-        console.log("Producto Seleccionado: "+producto+". Valor: $"+valor);
-        elegirMedioDePago();
-        calcularValorDescuento();
-        aplicarCupon();
-        break;
 
-    case 2:
-         producto="Celular Samsung S24";
-        valor= 5500000;
-        console.log("Producto Seleccionado: "+producto+". Valor: $"+valor);
-        elegirMedioDePago();
-        calcularValorDescuento();
-        aplicarCupon();
-        break;
+    let opcion = prompt("Bienvenido, por favor eliga uno de nuestros productos\n 1. TV Sony 46 pulgadas\n 2. Celular Samsung S24\n 3. Computador Acer 15 pulgadas\n 4. Audifonos Bose\n 5. Salir\n Ingrese la opción que desea: ");
+    switch(parseInt(opcion)){
+        case 1:
+            producto="TV Sony 46 pulgadas";
+            valor= 3500000;
+            console.log("Producto Seleccionado: "+producto+". Valor: $"+valor);
+            elegirMedioDePago();
+            calcularValorDescuento();
+            aplicarCupon();
+            break;
 
-    case 3:
-        producto="Computador Acer 15 pulgadas";
-        valor= 4750000;
-        console.log("Producto Seleccionado: "+producto+". Valor: $"+valor);
-        elegirMedioDePago();
-        calcularValorDescuento();
-        aplicarCupon();
-        break;
-    
-    case 4:
-        producto="Audifonos Bose";
-        valor= 2200000;
-        console.log("Producto Seleccionado: "+producto+". Valor: $"+valor);
-        elegirMedioDePago();
-        calcularValorDescuento();
-        aplicarCupon();
-        break;
+        case 2:
+            producto="Celular Samsung S24";
+            valor= 5500000;
+            console.log("Producto Seleccionado: "+producto+". Valor: $"+valor);
+            elegirMedioDePago();
+            calcularValorDescuento();
+            aplicarCupon();
+            break;
 
-    case 5:
-        alert("Gracias, vuelva pronto")
-        break;
-}
+        case 3:
+            producto="Computador Acer 15 pulgadas";
+            valor= 4750000;
+            console.log("Producto Seleccionado: "+producto+". Valor: $"+valor);
+            elegirMedioDePago();
+            calcularValorDescuento();
+            aplicarCupon();
+            break;
+        
+        case 4:
+            producto="Audifonos Bose";
+            valor= 2200000;
+            console.log("Producto Seleccionado: "+producto+". Valor: $"+valor);
+            elegirMedioDePago();
+            calcularValorDescuento();
+            aplicarCupon();
+            break;
+
+        case 5:
+            alert("Gracias, vuelva pronto")
+            break;
+    }
+
 
