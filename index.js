@@ -1,4 +1,4 @@
-let producto,tarjeta;//Declaración de variables
+/*let producto,tarjeta;//Declaración de variables
 
 const productos = [
     {
@@ -133,7 +133,7 @@ function aplicarCupon(){// funcion para aplicar el descuento de acuerdo al cupon
 /*Menu principal que contiene los productos disponibles para ser seleccionados y va llamando en cada opción las distintas funciones
 para seleccionar el medio de pago aplicar el descuento y aplicar el cupon de descuento y mostrar el checkout al usuario
 */
-let mensajeMenu= "Bienvenido, por favor eliga uno de nuestros productos\n Ingrese la opción que desea: \n";
+/*let mensajeMenu= "Bienvenido, por favor eliga uno de nuestros productos\n Ingrese la opción que desea: \n";
 productos.forEach((product,indice)=>{    
     mensajeMenu +=  (indice+1)+". "+product.nombre+"\n";    
 });
@@ -143,7 +143,7 @@ productos.forEach((product,indice)=>{
      console.log("Producto Seleccionado: "+producto.nombreProducto+". Valor: $"+producto.valorProducto);
      elegirMedioDePago();
      calcularValorDescuento();
-    aplicarCupon();
+    aplicarCupon();*/
 
 
 
