@@ -1,5 +1,6 @@
-/*let producto,tarjeta;//Declaración de variables
+let producto,tarjeta;//Declaración de variables
 
+// array para guardar los productos que se van a mostrar en e-commerce
 const productos = [
     {
         nombre: "TV Sony 46 pulgadas",
@@ -27,7 +28,7 @@ const productos = [
     },
 
 ];
-
+// array con medios de pago disponibles
 const medioDePago = [
     {
         tarjetaNombre: "Tarjeta Falabella",
@@ -47,6 +48,8 @@ const medioDePago = [
     },
 
 ]
+
+//clase para albergar el producto elegido en un objeto
 class Producto{
     constructor(nombreProducto,valorProducto,imagenProducto){
         this.nombreProducto = nombreProducto;
@@ -55,7 +58,7 @@ class Producto{
     }
 
 }
-
+// clase para albergar el medio de pago elegido por el usuario
 class Tarjeta{
     constructor(nombreTarjeta,descuentoTarjeta){
         this.nombreTarjeta = nombreTarjeta;
@@ -66,14 +69,14 @@ class Tarjeta{
 
 
 
-function elegirMedioDePago(){// funcion para mostrar el menu para elegir el medio de pago a usar para cotizar el descuento
+function elegirMedioDePago(){// funcion para mostrar el menu para elegir el medio de pago a usar para cotizar el descuento por medio de un foreach
         let mensajeMediodePago= "por favor eliga uno de nuestros medios pago:\n ";
         medioDePago.forEach((medioPago,indice)=>{    
         mensajeMediodePago +=  (indice+1)+". "+medioPago.tarjetaNombre+"\n";    
         });
       let opcionTarjeta = prompt(mensajeMediodePago);
        if (opcionTarjeta >= 0 && opcionTarjeta <= medioDePago.length) {
-            tarjeta = new Tarjeta(medioDePago[opcionTarjeta-1].tarjetaNombre,medioDePago[opcionTarjeta-1].descuento); 
+            tarjeta = new Tarjeta(medioDePago[opcionTarjeta-1].tarjetaNombre,medioDePago[opcionTarjeta-1].descuento); // instancia del objeto para guardar el medio de pago elegido
        } else if ( opcionTarjeta > medioDePago.length){
         console.warn("Opción Invalida, por favor ingrese un numero valido:")
        } else {
@@ -88,7 +91,7 @@ function aplicarIVA(valor){
     return iva;
 }
 
-function calcularValorDescuento(){// funcion para calcular el valor del producto con base en el descuento seleccionado
+function calcularValorDescuento(){// funcion para calcular el valor del producto con base en el descuento seleccionado 
     let valorConDescuento= parseInt(producto.valorProducto-(producto.valorProducto*(tarjeta.descuentoTarjeta/100)));
     let subtotal = valorConDescuento-aplicarIVA(valorConDescuento);
     console.log("Checkout\n Producto: "+producto.nombreProducto+"\n Medio de pago: "+tarjeta.nombreTarjeta+"\n Valor: $"+producto.valorProducto+"\n Descuento: "+tarjeta.descuentoTarjeta+"%\n Subtotal: $"+subtotal+"\n IVA: $"+aplicarIVA(valorConDescuento)+"\n Valor Total: $"+valorConDescuento);
@@ -130,10 +133,10 @@ function aplicarCupon(){// funcion para aplicar el descuento de acuerdo al cupon
     }
     }
 
-/*Menu principal que contiene los productos disponibles para ser seleccionados y va llamando en cada opción las distintas funciones
+/*Menu principal que contiene los productos disponibles para ser seleccionados por medio de un foreachy va llamando en cada opción las distintas funciones
 para seleccionar el medio de pago aplicar el descuento y aplicar el cupon de descuento y mostrar el checkout al usuario
 */
-/*let mensajeMenu= "Bienvenido, por favor eliga uno de nuestros productos\n Ingrese la opción que desea: \n";
+let mensajeMenu= "Bienvenido, por favor eliga uno de nuestros productos\n Ingrese la opción que desea: \n";
 productos.forEach((product,indice)=>{    
     mensajeMenu +=  (indice+1)+". "+product.nombre+"\n";    
 });
@@ -143,7 +146,7 @@ productos.forEach((product,indice)=>{
      console.log("Producto Seleccionado: "+producto.nombreProducto+". Valor: $"+producto.valorProducto);
      elegirMedioDePago();
      calcularValorDescuento();
-    aplicarCupon();*/
+    aplicarCupon();
 
 
 
