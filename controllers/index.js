@@ -1,26 +1,31 @@
-let producto,tarjeta;//Declaración de variables
+document.addEventListener("DOMContentLoaded",function(){
+    let producto,tarjeta;//Declaración de variables
 
 // array para guardar los productos que se van a mostrar en e-commerce
 const productos = [
     {
+        id: 1,
         nombre: "TV Sony 46 pulgadas",
         valor: 3500000,
         imagen: "./img/tv50pulgadas.jpg"
 
     },
     {
+        id: 2,
         nombre: "Celular Samsung S24 Ultra",
         valor: 5500000,
         imagen: "./img/samsungS24.jpeg"
 
     },
     {
+        id: 3,
         nombre: "Computador Acer 15 pulgadas",
         valor: 4600000,
         imagen: "./img/acer15.jpeg"
 
     },
     {
+        id: 4,
         nombre: "Audifonos Bose",
         valor: 2400000,
         imagen: "./img/boseHeadset.jpeg"
@@ -31,18 +36,22 @@ const productos = [
 // array con medios de pago disponibles
 const medioDePago = [
     {
+        id: 1,
         tarjetaNombre: "Tarjeta Falabella",
         descuento: 20
     },
     {
+        id: 2,
         tarjetaNombre: "Tarjeta Tuya",
         descuento: 30
     },
     {
+        id: 3,
         tarjetaNombre: "Tarjeta Davivienda",
         descuento: 25
     },
     {
+        id: 4,
         tarjetaNombre: "Tarjeta Scotiabank",
         descuento: 10
     },
@@ -51,7 +60,8 @@ const medioDePago = [
 
 //clase para albergar el producto elegido en un objeto
 class Producto{
-    constructor(nombreProducto,valorProducto,imagenProducto){
+    constructor(id,nombreProducto,valorProducto,imagenProducto){
+        this.id = id;
         this.nombreProducto = nombreProducto;
         this.valorProducto = valorProducto;
         this.imagenProducto = imagenProducto;
@@ -60,7 +70,8 @@ class Producto{
 }
 // clase para albergar el medio de pago elegido por el usuario
 class Tarjeta{
-    constructor(nombreTarjeta,descuentoTarjeta){
+    constructor(id,nombreTarjeta,descuentoTarjeta){
+        this.id = id;
         this.nombreTarjeta = nombreTarjeta;
         this.descuentoTarjeta = descuentoTarjeta;
     }
@@ -71,8 +82,8 @@ class Tarjeta{
 
 function elegirMedioDePago(){// funcion para mostrar el menu para elegir el medio de pago a usar para cotizar el descuento por medio de un foreach
         let mensajeMediodePago= "por favor eliga uno de nuestros medios pago:\n ";
-        medioDePago.forEach((medioPago,indice)=>{    
-        mensajeMediodePago +=  (indice+1)+". "+medioPago.tarjetaNombre+"\n";    
+        medioDePago.forEach((medioPago)=>{    
+        mensajeMediodePago +=  (medioPago.id)+". "+medioPago.tarjetaNombre+"\n";    
         });
       let opcionTarjeta = prompt(mensajeMediodePago);
        if (opcionTarjeta >= 0 && opcionTarjeta <= medioDePago.length) {
@@ -136,17 +147,45 @@ function aplicarCupon(){// funcion para aplicar el descuento de acuerdo al cupon
 /*Menu principal que contiene los productos disponibles para ser seleccionados por medio de un foreachy va llamando en cada opción las distintas funciones
 para seleccionar el medio de pago aplicar el descuento y aplicar el cupon de descuento y mostrar el checkout al usuario
 */
-let mensajeMenu= "Bienvenido, por favor eliga uno de nuestros productos\n Ingrese la opción que desea: \n";
-productos.forEach((product,indice)=>{    
-    mensajeMenu +=  (indice+1)+". "+product.nombre+"\n";    
-});
+//let mensajeMenu= "Bienvenido, por favor eliga uno de nuestros productos\n Ingrese la opción que desea: \n";
+//productos.forEach((product,indice)=>{    
+    //mensajeMenu +=  (indice+1)+". "+product.nombre+"\n";    
+//});
 
-    let opcion = prompt(mensajeMenu+" 5. Salir\n");
-     producto = new Producto(productos[opcion-1].nombre,parseInt(productos[opcion-1].valor,productos[opcion-1].imagen))
-     console.log("Producto Seleccionado: "+producto.nombreProducto+". Valor: $"+producto.valorProducto);
-     elegirMedioDePago();
-     calcularValorDescuento();
-    aplicarCupon();
+
+
+
+    //let opcion = prompt(mensajeMenu+" 5. Salir\n");
+    const mostrarProductos = document.getElementById('cardContainer');
+   
+    productos.forEach(producto => {
+        const cardDiv = document.createElement("div");
+        cardDiv.classList.add("card");
+        const imagen = document.createElement("img");
+        imagen.src = producto.imagen;
+        const nombreH6 = document.createElement("h6");
+        nombreH6.textContent = producto.nombre;
+        const precioP = document.createElement("p");
+        precioP.textContent = `$${new Intl.NumberFormat('es-CO').format(producto.valor)}`;
+        const agregarBtn = document.createElement("button");
+        agregarBtn.textContent = "Añadir al carrito";
+       
+        cardDiv.appendChild(imagen);
+        cardDiv.appendChild(nombreH6);
+        cardDiv.appendChild(precioP);
+        cardDiv.appendChild(agregarBtn);
+        mostrarProductos.appendChild(cardDiv);
+              
+
+    });
+     //producto = new Producto(productos[opcion-1].nombre,parseInt(productos[opcion-1].valor,productos[opcion-1].imagen))
+     //console.log("Producto Seleccionado: "+producto.nombreProducto+". Valor: $"+producto.valorProducto);
+     //elegirMedioDePago();
+     //calcularValorDescuento();
+    //aplicarCupon();
+
+
+});
 
 
 
