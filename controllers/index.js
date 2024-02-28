@@ -210,7 +210,7 @@ function agregarAlCarrito(producto){
            alert("No ha elegido ningun producto");
            
         } else {
-            window.location.href = './pages/mediosDePago.html'
+            window.location.href = '/pages/mediosDePago.html'
         }
     })
      //producto = new Producto(productos[opcion-1].nombre,parseInt(productos[opcion-1].valor,productos[opcion-1].imagen))
