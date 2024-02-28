@@ -176,3 +176,23 @@ button {
     border-radius: 8px;
     margin-bottom: 10px;
 }
+#carritoIcono {
+    font-size: 24px;
+    margin-right: 5px;
+  }
+
+  #carritoBtn {
+    margin-top: 10px;
+  }
+
+  .contenedorProductos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centra los elementos en el contenedor */
+  }
+
+  #detalle-producto{
+    display: flex;
+      flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente fila si no hay suficiente espacio */
+      justify-content: space-around;
+  }

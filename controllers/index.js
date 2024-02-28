@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded",function(){
-    let producto,tarjeta;//Declaración de variables
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    let tarjeta;//Declaración de variables
 
 // array para guardar los productos que se van a mostrar en e-commerce
 const productos = [
@@ -7,6 +8,13 @@ const productos = [
         id: 1,
         nombre: "TV Sony 46 pulgadas",
         valor: 3500000,
+        imagen: "./img/tv50pulgadas.jpg"
+
+    },
+    {
+        id: 6,
+        nombre: "TV Prueba 46 pulgadas",
+        valor: 3550000,
         imagen: "./img/tv50pulgadas.jpg"
 
     },
@@ -153,7 +161,19 @@ para seleccionar el medio de pago aplicar el descuento y aplicar el cupon de des
 //});
 
 
+function agregarAlCarrito(producto){
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
+    const productoExistente = carrito.find(item => item.id === producto.id);
+
+    if(productoExistente){
+        productoExistente.cantidad+=1;
+    }else {
+        carrito.push({id: producto.id, nombre: producto.nombre, imagen: producto.imagen, precio: producto.valor, cantidad: 1})
+    }
+    localStorage.setItem("carrito",JSON.stringify(carrito));
+    
+}
 
     //let opcion = prompt(mensajeMenu+" 5. Salir\n");
     const mostrarProductos = document.getElementById('cardContainer');
@@ -169,6 +189,10 @@ para seleccionar el medio de pago aplicar el descuento y aplicar el cupon de des
         precioP.textContent = `$${new Intl.NumberFormat('es-CO').format(producto.valor)}`;
         const agregarBtn = document.createElement("button");
         agregarBtn.textContent = "Añadir al carrito";
+        agregarBtn.addEventListener('click',() =>{
+            agregarAlCarrito(producto);
+            
+        })
        
         cardDiv.appendChild(imagen);
         cardDiv.appendChild(nombreH6);
@@ -178,6 +202,17 @@ para seleccionar el medio de pago aplicar el descuento y aplicar el cupon de des
               
 
     });
+
+    const carritoBtn = document.getElementById('carritoBtn');
+    carritoBtn.addEventListener('click', function(){
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        if (carrito.length < 1){
+           alert("No ha elegido ningun producto");
+           
+        } else {
+            window.location.href = '../pages/mediosDePago.html'
+        }
+    })
      //producto = new Producto(productos[opcion-1].nombre,parseInt(productos[opcion-1].valor,productos[opcion-1].imagen))
      //console.log("Producto Seleccionado: "+producto.nombreProducto+". Valor: $"+producto.valorProducto);
      //elegirMedioDePago();
