@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medios de pago</title>
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <meta name="description" content="Cotizador de electrodomésticos para obtener precios y detalles">
+    <link rel="shortcut icon" href="../img/logo.jpeg">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../img/logo.jpeg" alt="Logo de la aplicación">
+            <h3>Tecnodomesticos</h3>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Inicio</a></li>
+                <li><a href="./mediosDePago.html">Medios de pago</a></li>
+                <li><a href="./checkout.html">Check out</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="detalle-producto" >
+           
+            <div id="info-producto" class=".contenedorProductos" >
+                
+                <div class="div-detalle">                    
+                    <h3>Carrito</h3>
+                    
+                </div>
+                
+                
+            </div>
+            <div class="div-detalle">
+                <div id="totalPago" class="div-detalle">
+                    <h3>Detalle del Producto</h3>
+                </div>
+                <div id="medios-pago" >
+                    <h3>Medios de Pago</h3>
+                    <!-- Lista para mostrar los medios de pago disponibles -->
+                    <ul id="lista-medios-pago">
+                        <form id="form-medios-pago"></form>
+                        
+                    </ul>
+                </div> 
+            </div>
+            
+        </section>
+        
+    </main>
+    <footer>
+        <p> 2024 Tecnodomesticos. Todos los derechos reservados. Por Juan Ortiz para CoderHouse</p>
+    </footer>
+    <script src="./controllers/mediosDePago.js"></script>
+</body>
+</html>

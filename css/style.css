@@ -74,7 +74,7 @@ main {
     padding: 15px;
     text-align: center;
     width: 200px;
-    height: 320px;
+    height: 350px;
 }
 
 .card img {
@@ -161,34 +161,32 @@ button {
 .contenedor-horizontal-checkout {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: left;
+    flex-direction: row-reverse;
 }
+
 
 .div-detalle-checkout {
     /* Puedes agregar estilos adicionales según tus necesidades */
     margin: 10px;
-    text-align: center;
+    text-align: left;
+    flex-direction: row-reverse;
 }
 
 .img-checkout {
     max-width:  100%;
-    height: 400px;
+    height: 100px;
     border-radius: 8px;
     margin-bottom: 10px;
 }
-#carritoIcono {
-    font-size: 24px;
-    margin-right: 5px;
-  }
 
-  #carritoBtn {
-    margin-top: 10px;
-  }
+
+
 
   .contenedorProductos {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Centra los elementos en el contenedor */
+    justify-content: left; /* Centra los elementos en el contenedor */
   }
 
   #detalle-producto{
@@ -196,3 +194,70 @@ button {
       flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente fila si no hay suficiente espacio */
       justify-content: space-around;
   }
+
+  #carritoIcono {
+    width: 24px; /* Ajusta el tamaño según tus preferencias */
+    height: 24px;
+    margin-right: 5px;
+  }
+
+  .cardCarrito {
+    display: flex;
+   
+    flex-direction: row; /* Establecer dirección de columna para alinear elementos hacia abajo */
+    border: 1px solid #ddd;
+    justify-content: space-between;
+    border-radius: 8px;
+    margin: 10px;
+    
+    text-align: left;
+    width: 600px;
+    height: 150px;
+    margin-right: 0px;
+    margin-left: 10px;
+}
+
+.cardCarrito img {
+    max-width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.cardCarrito button{
+    margin-top: 40px;
+    margin-left: 200px; 
+    margin-right: 10px;/* Hace que el botón se alinee hacia abajo */
+    align-items: center;
+    background-color: #d48723;
+    color: #333;
+    padding-left: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    
+    height: 35px;
+}
+
+.elementProducto {
+    display: flexbox;
+    flex-direction: column; /* Establecer dirección de columna para alinear elementos hacia abajo */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-right: 300px;
+    padding: 100px;
+    text-align: center;
+    margin-top: 0px;
+    margin-right: 50px;
+    
+}
+
+.elementProducto p{
+    
+   
+    margin-top: 0px;
+    margin-right: 50px;
+
+    
+}

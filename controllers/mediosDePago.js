@@ -1,4 +1,29 @@
 document.addEventListener("DOMContentLoaded",function(){
+
+    const medioDePago = [
+        {
+            id: 1,
+            tarjetaNombre: "Tarjeta Falabella",
+            descuento: 20
+        },
+        {
+            id: 2,
+            tarjetaNombre: "Tarjeta Tuya",
+            descuento: 30
+        },
+        {
+            id: 3,
+            tarjetaNombre: "Tarjeta Davivienda",
+            descuento: 25
+        },
+        {
+            id: 4,
+            tarjetaNombre: "Tarjeta Scotiabank",
+            descuento: 10
+        },
+    
+    ]
+
  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
  
  const mostrarProductos = document.getElementById('info-producto');
@@ -23,12 +48,15 @@ document.addEventListener("DOMContentLoaded",function(){
 
  
 function mostrarCarrito(){
+    mostrarProductos.innerHTML = "<h3>Carrito de compras</h3>";
     carrito.forEach(producto => {
-        const cardDiv = document.createElement("div");
-            cardDiv.classList.add("card");
+            const cardDiv = document.createElement("div");
+            cardDiv.classList.add("cardCarrito");
+            const descripcionProducto = document.createElement('div');
+            descripcionProducto.classList.add('elementoProducto');
             const imagen = document.createElement("img");
             imagen.src = `.${producto.imagen}`;
-            const nombreH6 = document.createElement("h6");
+            const nombreH6 = document.createElement("p");
             nombreH6.textContent = producto.nombre;
             const precioP = document.createElement("p");
             precioP.textContent = `$${new Intl.NumberFormat('es-CO').format(producto.precio)}`;
@@ -41,9 +69,10 @@ function mostrarCarrito(){
                 
             })
             cardDiv.appendChild(imagen);
-            cardDiv.appendChild(nombreH6);
-            cardDiv.appendChild(precioP);
-            cardDiv.appendChild(cantidad);
+            descripcionProducto.appendChild(nombreH6);
+            descripcionProducto.appendChild(precioP);
+            descripcionProducto.appendChild(cantidad);
+            cardDiv.appendChild(descripcionProducto);
             cardDiv.appendChild(removerBtn);
             mostrarProductos.appendChild(cardDiv);
         
@@ -75,9 +104,9 @@ function calcularTotal(){
     mostrarTotal.appendChild(valorIVA);
     mostrarTotal.appendChild(valorTotal);
 
-    let totales = [valorSubtotal,valorIVA,valorTotal]
+    let totales = [{"subtotal": subtotal,"iva": iva,"total": total}];
 
-    //localStorage.setItem("total",totales.array);
+    localStorage.setItem("total",JSON.stringify(totales));
 
 
 }
@@ -86,7 +115,7 @@ function calcularTotal(){
     carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     //total = JSON.parse(localStorage.getItem("total")) || [];
     if(carrito.length === 0){
-        window.location.href = '../index.html';
+        window.location.href = './index.html';
         
     }else {
         mostrarProductos.innerHTML = "";
@@ -99,8 +128,55 @@ function calcularTotal(){
     
     
  }
+ 
+ function generarFormMediosdePago() {
+   
+
+    const formularioMedioPago = document.getElementById("form-medios-pago");
+
+    medioDePago.forEach(opcion => {
+        const label = document.createElement("label");
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "medio-pago";
+        radio.value = opcion.id;
+        label.appendChild(radio);
+        label.appendChild(document.createTextNode(`${opcion.tarjetaNombre} - ${opcion.descuento}%`));
+
+        formularioMedioPago.appendChild(label);
+      });
+
+      const botonContinuar = document.createElement("button");
+      botonContinuar.type = "button";
+      botonContinuar.textContent = "Continuar";
+      botonContinuar.addEventListener("click", guardarMedioPago);
+      formularioMedioPago.appendChild(botonContinuar);
+
+
+
+  }
+  function guardarMedioPago() {
+    const radios = document.querySelectorAll('input[name="medio-pago"]');
+    let medioPagoSeleccionado;
+
+    radios.forEach(radio => {
+      if (radio.checked) {
+        medioPagoSeleccionado = radio.value;
+      }
+    });
+    const medioDePagoElegido = medioDePago.find(medioPago => medioPago.id == medioPagoSeleccionado);
+    if (medioDePagoElegido) {
+
+      localStorage.setItem('medioDePagoElegido',JSON.stringify(medioDePagoElegido));
+      window.location.href = './checkout.html';
+    } else {
+      alert('Por favor, selecciona un medio de pago antes de continuar.');
+    }
+  }
+
  mostrarCarrito();
  calcularTotal();
+ generarFormMediosdePago();
 
 
 });
