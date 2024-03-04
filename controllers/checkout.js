@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded",function(){
                 descripcionProducto.classList.add('elementoProducto');
                 const imagen = document.createElement("img");
                 imagen.classList.add('img-checkout');
-                imagen.src = `.${producto.imagen}`;
+                imagen.src = `${producto.imagen}`;
                 const nombreH6 = document.createElement("p");
                 nombreH6.textContent = producto.nombre;
                 const precioP = document.createElement("p");
