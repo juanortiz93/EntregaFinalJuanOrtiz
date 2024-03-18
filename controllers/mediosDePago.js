@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded",function(){
         }
         Toastify({
             text: "Producto eliminado del carrito",
-            duration: 1000,
+            duration: 2000,
             className: "info",
             style: {
                 background: "linear-gradient(to right, #DABA28, #DABA28)",
