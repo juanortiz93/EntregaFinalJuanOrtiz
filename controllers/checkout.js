@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded",function(){
-    
-    
+       
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     let medioDePagoElegido = JSON.parse(localStorage.getItem("medioDePagoElegido")) || [];
     let total = JSON.parse(localStorage.getItem("total")) || [];
@@ -68,7 +67,12 @@ document.addEventListener("DOMContentLoaded",function(){
         aplicarCuponBtn.textContent = 'Aplicar';
         aplicarCuponBtn.addEventListener("click",() => {
             if(cuponText.value === ''){
-                alert("Por favor ingrese un cupón");
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Por favor ingrese un cupón válido',
+                    icon: 'error',
+                    confirmButtonText: 'Volver'
+                   });
                 
             }else if(cuponText.value == 'DESCUENTOENERO'){
                 const nuevoTotalCupon = parseInt(precioTotal-(precioTotal*((medioDePagoElegido.descuento+20)/100)));
@@ -94,7 +98,12 @@ document.addEventListener("DOMContentLoaded",function(){
                       
             }
             else{
-                alert("Cupón de descuento invalido");
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Por favor ingrese un cupón válido',
+                    icon: 'error',
+                    confirmButtonText: 'Volver'
+                   });
                 
             }
         });
@@ -102,14 +111,22 @@ document.addEventListener("DOMContentLoaded",function(){
         const finalizarBtn = document.createElement('button');
         finalizarBtn.textContent = 'Finalizar Compra';
         finalizarBtn.addEventListener('click',() =>{
-            alert("Muchas gracias por su compra, vuelva pronto");
-            window.location.href = './index.html';
-            localStorage.clear();
-        });
+            Swal.fire({
+                title: 'Compra exitosa',
+                text: 'Muchas gracias Vuelva pronto',
+                icon: 'success',
+                confirmButtonText: 'Continuar',
+                
+               }).then((result) => {
+                    if(result.isConfirmed){
+                        window.location.href = './index.html';
+                        localStorage.clear();
+                    }             
+              
+               })          
             
-       
-
-        
+        });
+ 
         mostrarTotal.appendChild(valorTotal);
         mostrarTotal.appendChild(tarjetaText);
         mostrarTotal.appendChild(labelDescuento);
@@ -123,16 +140,8 @@ document.addEventListener("DOMContentLoaded",function(){
         mostrarTotal.appendChild(finalizarBtn);
 
     }
-    function calcularValorDescuento(descuento){
-        nuevoTotal = parseInt(nuevoTotal-(nuevoTotal*((descuento)/100)));
-        
-
-
-        
-
-        
-    };
-mostrarCarrito();
-mostrarTotales();
+    
+    mostrarCarrito();
+    mostrarTotales();
 });
 
